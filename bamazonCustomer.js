@@ -22,8 +22,19 @@ var connection = mysql.createConnection({
 connection.connect(function(err) {
   if (err) throw err;
   console.log("connected as id " + connection.threadId);
-  connection.end();
+  displayProducts();
 });
+
+
+function displayProducts() {
+  var query = "SELECT * FROM products";
+
+  connection.query(query, function(err, res) {
+    for (var i = 0; i < res.length; i++) {
+      console.log("Product Id: " + res[i].id + " || Product: " + res[i].product_name + " || Price: " + res[i].price);
+    }
+  });
+}
 
 /*function showProductsPrices() {
 	var query = "SELECT id, product_name, price FROM bamazon";
