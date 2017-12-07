@@ -1,5 +1,5 @@
 var mysql = require("mysql");
-/*var inquirer = require("inquirer");*/
+var inquirer = require("inquirer");
 
 var connection = mysql.createConnection({
   host: "localhost",
@@ -12,11 +12,6 @@ var connection = mysql.createConnection({
   password: "G!rlsc0utc@mp0ut",
   database: "bamazon"
 });
-
-/*connection.connect(function(err) {
-  if (err) throw err;
-  showProductsPrices();
-});*/
 
 
 connection.connect(function(err) {
@@ -36,12 +31,17 @@ function displayProducts() {
   });
 }
 
-/*function showProductsPrices() {
-	var query = "SELECT id, product_name, price FROM bamazon";
-	connection.query(query, function(err, res) {
-		for (var i = 0; i < res.length; i++) {
-			console.log("Product ID: " + res[i].id);
-		}
-	})
-	console.log(query);
-};*/
+function askWhichProduct() {
+  inquirer.
+  prompt([{
+    name: "item",
+    type: "input",
+    message: "Pick the ID of the item you would like to buy?"
+    validate: function(itemNumber) {
+      if (isNan(value) === false) {
+        return;
+      }
+
+    }
+  }])
+}
