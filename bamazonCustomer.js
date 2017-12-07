@@ -39,9 +39,24 @@ function askWhichProduct() {
     message: "Pick the ID of the item you would like to buy?"
     validate: function(itemNumber) {
       if (isNan(value) === false) {
-        return;
-      }
-
-    }
+        return false;
+      } else {
+         return true;
+            } else {
+                return false;
+            }
+            }
+        }, { name: "quantity",
+            type: "input",
+            message: "How many would you like to order?",
+            validate: function(value) {
+                if (isNaN(value) == false) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+    ]).then(function(answer) {
   }])
 }
