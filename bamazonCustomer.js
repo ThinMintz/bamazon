@@ -58,5 +58,6 @@ function askWhichProduct() {
             }
         }
     ]).then(function(answer) {
-  }])
-}
+  
+
+  })
