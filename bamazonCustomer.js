@@ -72,7 +72,7 @@ function askWhichProduct() {
             var price = res[0].price;
             var remainingStock = inStock - itemAmount;
             var grandTotal = price * itemAmount;
-            console.log("Remaining in stock: " + remainingInStock);
+            console.log("Remaining in stock: " + remainingStock);
             console.log("Your total is " + grandTotal);
 
             endBamazon();
