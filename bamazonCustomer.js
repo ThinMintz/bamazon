@@ -36,15 +36,12 @@ function askWhichProduct() {
   prompt([{
     name: "item",
     type: "input",
-    message: "Pick the ID of the item you would like to buy?"
+    message: "Pick the ID of the item you would like to buy"
     validate: function(itemNumber) {
       if (isNan(value) === false) {
-        return false;
+        return true;
       } else {
-         return true;
-            } else {
-                return false;
-            }
+         return false;
             }
         }, { name: "quantity",
             type: "input",
@@ -58,6 +55,30 @@ function askWhichProduct() {
             }
         }
     ]).then(function(answer) {
-  
+  var item = answer.productID;
+  //console.log(item);
 
-  })
+  var itemAmount = answer.amount;
+  //console.log(itemAmount);
+  console.log("You are buying " + itemAmount + " of " + item +".");
+  connection.query("SELECT * FROM products WHERE ?", 
+            
+  [{item_id : item}], 
+    function(err, res) {
+      if (err) throw err;
+        //console.log(res);
+
+            var inStock = res[0].stock_quantity;
+            var price = res[0].price;
+            var remainingStock = inStock - itemAmount;
+            var grandTotal = price * itemAmount;
+            console.log("Remaining in stock: " + remainingInStock);
+            console.log("Your total is " + grandTotal);
+
+            endBamazon();
+          });  
+        });
+
+function endBamazon() {
+  connection.end();
+};
